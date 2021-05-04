@@ -21,3 +21,17 @@ const todo2 = updateTodo(todo1, {
 });
 
 alert(JSON.stringify(todo2))
+
+
+/////////////////////Required<Type>/////////////
+/*Constructs a type consisting of all properties of Type set to required. The opposite of Partial.
+*/
+
+interface Person {
+  name: string;
+  email?: string;
+}
+
+const obj: Person = { name:'test' };
+const obj2: Required<Person> = { name: 'test1'};
+//Error : Property 'email' is missing in type '{ name: string; }' but required in type 'Required<Person>'.(2741)
