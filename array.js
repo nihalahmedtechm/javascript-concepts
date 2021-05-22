@@ -31,3 +31,26 @@ const mergeArray = (data1, data2) => {
 }
 
 console.log(mergeArray(data1,data2))
+
+/// Promise with app and for of
+const arrData = [1, 2, 3, 4, 5]
+const promise = (i) => {
+    return new Promise(res => {
+        setTimeout(() => {
+            console.log(i);
+            res();
+        }, 1000)
+    })
+}
+ Promise.all(arrData.map((item)=> promise(item)))
+ // or
+const f1 = async () => {
+    console.log('start');
+    for (const x of arrData) {
+        await promise(x);
+    }
+}
+f1().then(() => {
+    console.log('end!');
+})
+
