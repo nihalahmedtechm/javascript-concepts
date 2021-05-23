@@ -31,3 +31,20 @@ In production, people often use bundlers such as Webpack to bundle modules toget
 In the next chapter we’ll see more examples of modules, and how things can be exported/imported.
 
 */
+
+//Dynamic imports //
+
+// 📁 say.js
+export function hi() {
+  alert(`Hello`);
+}
+
+export function bye() {
+  alert(`Bye`);
+}
+
+//Then dynamic import can be like this:
+let {hi, bye} = await import('./say.js');
+
+hi();
+bye();
