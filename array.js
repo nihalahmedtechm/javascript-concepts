@@ -54,3 +54,13 @@ f1().then(() => {
     console.log('end!');
 })
 
+/////////////////////////Nullish coalescing operator '??'////////////
+
+let a = 10;
+let b = null;
+let c = 30
+let result = a != null && a != undefined ? a : b != null && b != null ? b : c;
+console.log(result)
+//// or 
+let resultNullishCoalescingOperator = a ?? b ?? c;
+console.log(resultNullishCoalescingOperator)
