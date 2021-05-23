@@ -88,3 +88,33 @@ const f2 = async () => {
 f2().then(() => {
 
 })
+
+////////////////Promisification//////////////////
+
+function myf1(data, cb) {
+    console.log('I am callback')
+    setTimeout(() => {
+        cb(null, 'data', data)
+    }, 2000);
+}
+
+function promisify(f) {
+    return function (...args) { // return a wrapper-function (*)
+        return new Promise((resolve, reject) => {
+            function callback(err, result) { // our custom callback for f (**)
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            }
+            args.push(callback); // append our custom callback to the end of f arguments
+            f.call(this, ...args); // call the original function
+        });
+    };
+}
+
+let loadScriptPromise = promisify(myf1);
+loadScriptPromise('data').then((data) => {
+    console.log('data', data)
+})
