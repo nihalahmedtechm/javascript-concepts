@@ -48,3 +48,43 @@ let {hi, bye} = await import('./say.js');
 
 hi();
 bye();
+
+/////////Generators////
+
+ function* display() {    
+     yield 1;
+     yield 2;
+     return 3;
+ }
+
+ let disp= display();
+
+
+ console.log(disp.next().value)
+ console.log(disp.next().value)
+
+
+// //// Generators are iterable ////////
+
+for (const iterator of disp) {
+    console.log(iterator,'test')
+}
+
+///////////////////////////////
+
+function* generateSequence(start, end) {
+    for (let i = start; i <= end; i++) yield console.log(i)
+}
+
+let data = generateSequence(0, 5);
+const f2 = async () => {
+    for (let index = 1000; index < 1005; index++) {
+        setTimeout(async () => {
+            await data.next()
+        }, index);
+
+    }
+}
+f2().then(() => {
+
+})
