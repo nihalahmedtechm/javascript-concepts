@@ -10,11 +10,7 @@ const maskEmailName = (emailName,maskChar) => {
 const maskDomainName = (emailName,maskChar) => {
 
     const ArrStr = emailName.split(".");
-    const dName= ArrStr[0].split("");
-    const maskLength = dName.length <= 4 ? 0 : dName.length > 4 && dName.length < 7 ? 2 : dName.length >= 8 && dName.length <= 12 ? 3 : 4;
-    const strNoL = dName.slice(0, maskLength)
-    const strNoR = dName.slice(maskLength, dName.length).map(() => maskChar)
-    return `${strNoL.join("")}${strNoR.join("")}.${ArrStr[1]}`;
+    return `${maskEmailName(ArrStr[0],maskChar)}.${ArrStr[1]}`;
 }
 
 const emailAddressMasker = (emailAddress,maskChar) => {
@@ -27,3 +23,5 @@ const emailAddressMasker = (emailAddress,maskChar) => {
 }
 
 console.log(emailAddressMasker('nhialahmed@testdomain.com','x'))
+
+Output: nhixxxxxxx@tesxxxxxxx.com
